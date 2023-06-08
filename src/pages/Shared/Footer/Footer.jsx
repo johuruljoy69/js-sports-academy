@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <>
-            <footer className="footer p-10 text-base-content mt-12">
+        <>           
+            <footer className="footer p-10 text-base-content mt-12 ">
                 <div className='text-white'>
                     <div className='flex items-center'>
 
@@ -20,7 +20,7 @@ const Footer = () => {
                 <div className='text-white'>
                     <span className="footer-title">Quick Links</span>
                     <a className="link link-hover">Help Center</a>
-                    <a className="link link-hover">Redeem Voucher</a>                   
+                    <a className="link link-hover">Redeem Voucher</a>
                     <a className="link link-hover">Policies & Rules</a>
                     <a className="link link-hover">Check Offer List</a>
                     <a className="link link-hover">Contact Us</a>
