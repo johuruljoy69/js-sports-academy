@@ -17,14 +17,14 @@ const Login = () => {
                         <img src="https://cdn.pixabay.com/photo/2021/08/25/12/45/phishing-6573326_1280.png" alt="" />
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-2xl shadow-2xl">
-                        <h2 className="text-3xl font-semibold text-center">Login Here</h2>
+                        <img src="https://www.pngmart.com/files/3/Member-Login-Button-PNG-Clipart.png" alt="" />
                         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text text-white">Email</span>
                                 </label>
                                 <input type="email"  {...register("email", { required: true })} name="email" placeholder="Your Email" className="input input-bordered bg-gray-800 border border-white" />
-                                {errors.email && <span className="text-red-600">Email is required</span>}
+                                {errors.email && <span className="text-orange-500">Email is required</span>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -33,7 +33,7 @@ const Login = () => {
                                 <input type="password"  {...register("password", {
                                     required: true,                                    
                                 })} placeholder="Your Password" className="input input-bordered bg-gray-800 border border-white " />
-                                {errors.password?.type === 'required' && <p className="text-red-600">Password is required</p>}
+                                {errors.password?.type === 'required' && <p className="text-orange-500">Password is required</p>}
                                 
                                 <label className="label">
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
