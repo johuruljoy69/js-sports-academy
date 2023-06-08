@@ -10,7 +10,7 @@ const Footer = () => {
                 <div className='text-white'>
                     <div className='flex items-center'>
 
-                        <Link to="/" className="btn btn-ghost normal-case text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-300"> Playfit Sports Academy</Link>
+                        <Link to="/" className="btn btn-ghost normal-case text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-300"> JS Sports Academy</Link>
                     </div>
                     {/* <p>A kids toy shop is a store that <br /> specializes in selling toys and <br /> games designed specifically for children.</p> */}
                     <p className='flex items-center'><MdLocationPin size={'1rem'} /> <span className='ps-2'>Jashore Sador, Khulna, Bangladesh</span></p>
@@ -46,7 +46,7 @@ const Footer = () => {
             </footer>
             <footer className="footer footer-center p-4 text-white pb-10">
                 <div>
-                    <p>Copyright © 2023 - All right reserved by Playfit Sports Academy</p>
+                    <p>Copyright © 2023 - All right reserved by JS Sports Academy</p>
                 </div>
             </footer>
         </>

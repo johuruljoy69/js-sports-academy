@@ -35,7 +35,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 {/* <img className='rounded-full w-14'  alt="logo" /> */}
-                <Link to="/" className="btn btn-ghost normal-case text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-300"> Playfit Sports Academy</Link>
+                <Link to="/" className="btn btn-ghost normal-case text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-300"> JS Sports Academy</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal font-semibold flex gap-5 items-center">

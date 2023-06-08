@@ -1,12 +1,38 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider";
+import Swal from 'sweetalert2';
 
 
 const Login = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { signIn } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+
+    const from = location.state?.from?.pathname || "/";
 
     const onSubmit = data => {
         console.log(data);
+        signIn(data.email, data.password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                reset();
+                Swal.fire({
+                    title: 'User Login Successfully',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                })
+                navigate(from, { replace: true })
+            })
+            .catch(error => console.log(error.message))
     }
 
     return (
@@ -31,10 +57,10 @@ const Login = () => {
                                     <span className="label-text text-white">Password</span>
                                 </label>
                                 <input type="password"  {...register("password", {
-                                    required: true,                                    
+                                    required: true,
                                 })} placeholder="Your Password" className="input input-bordered bg-gray-800 border border-white " />
                                 {errors.password?.type === 'required' && <p className="text-orange-500">Password is required</p>}
-                                
+
                                 <label className="label">
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
