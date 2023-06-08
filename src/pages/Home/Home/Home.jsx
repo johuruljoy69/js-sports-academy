@@ -1,8 +1,15 @@
+import Banner from "./Banner/Banner";
+import PopularClasses from "./PopularClasses/PopularClasses";
+import PopularInstructors from "./PopularInstructors/PopularInstructors";
+import Slider from "./Slider/Slider";
 
 const Home = () => {
     return (
-        <div className="text-white">
-            <h2>This is Home page</h2>
+        <div>
+            <Banner />
+            <Slider />
+            <PopularInstructors />
+            <PopularClasses />
         </div>
     );
 };

@@ -70,7 +70,6 @@ const Login = () => {
                             </div>
                         </form>
                         <p className="text-center text-xl pb-5"><small>New user in here? <Link to="/signup"><span className="text-orange-500">Create an account</span></Link></small></p>
-                        {/* <SocialLogin></SocialLogin> */}
                     </div>
                 </div>
             </div>

@@ -1,26 +1,29 @@
-
+import { useContext } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider';
 
 
 
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
 
+    const handleLogout = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
 
 
     const navItems = <>
         <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/">Home</NavLink>
         <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/instructors">Instructors</NavLink>
         <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/classes">Classes</NavLink>
-        {/* {
-            user?.email? <><NavLink className={({ isActive }) => (isActive ? 'text-blue-700' : '')} to="/my-toys">My Toys</NavLink>
-            <NavLink className={({ isActive }) => (isActive ? 'text-blue-700' : '')} to="/add-toy">Add A Toy</NavLink></> : ""
-        } */}
         <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/dashboard">Dashboard</NavLink>
-        <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/contact"><span className='flex items-center'><FaShoppingCart /><div className="badge badge-secondary ml-1">+99 </div></span></NavLink>
+        <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/dashboard"><span className='flex items-center'><FaShoppingCart /><div className="badge badge-secondary ml-1">+99 </div></span></NavLink>
         <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/contact">Contact</NavLink>
-        <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/login">Login</NavLink>
+        
     </>
 
     return (
@@ -42,13 +45,28 @@ const Navbar = () => {
                     {navItems}
                 </ul>
             </div>
-            {/* <div className="navbar-end flex items-center space-x-2">
+            <div className="navbar-end flex items-center space-x-2">
+                {user && <div className="dropdown dropdown-end tooltip tooltip-left" data-tip={user.displayName}>
+                    <label tabIndex={0} className=" btn-circle">
+                        <img className='rounded-full w-10' src={user.photoURL} alt="user" />
+                    </label>
+                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-gray-800 rounded-box w-60">
+                        <li>
+                            <a className="justify-between">
+                                <h3>{user.displayName}</h3>
+                                <span className="badge">New</span>
+                            </a>
+                        </li>
+                        <li><a>Settings</a></li>
+                        <li><button onClick={handleLogout} className='btn btn-ghost text-purple-700 font-semibold rounded-lg '>Logout</button></li>
+                    </ul>
+                </div>}
 
                 {user ?
-                    <button onClick={handleLogout} className='px-5 py-2 text-white font-semibold rounded-lg bg-blue-500 hover:bg-blue-700 '>Logout</button> :
-                    <Link to='/login'><button className='px-5 py-2 text-white font-semibold rounded-lg bg-blue-500 hover:bg-blue-700'>Login</button></Link>
+                    <button onClick={handleLogout} className='bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:to-yellow-500 text-white font-bold py-2 px-4 rounded-lg '>Logout</button> :
+                    <Link to='/login'><button className='bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:to-yellow-500 text-white font-bold py-2 px-4 rounded-lg'>Login</button></Link>
                 }
-            </div> */}
+            </div>
         </div>
     );
 };
