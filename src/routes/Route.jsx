@@ -10,6 +10,8 @@ import Instructors from "../pages/Instructors/Instructors";
 import AllClasses from "../pages/AllClasses/AllClasses";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
 import PrivateRoute from "./PrivateRoute";
+import MyDashboard from "../pages/Dashboard/MyDashboard/MyDashboard";
+
 
 const router = createBrowserRouter([
     {
@@ -40,8 +42,14 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path: 'dashboard',
-        element: <PrivateRoute><DashBoard></DashBoard></PrivateRoute>
+        path: '/dashboard',
+        element: <PrivateRoute><DashBoard></DashBoard></PrivateRoute>,
+        children: [
+            {
+                path:'mydashboard',
+                element: <MyDashboard></MyDashboard>
+            }
+        ]
     }
 ]);
 export default router;

@@ -2,12 +2,14 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useCart from "../../../../hooks/useCart";
 
 
 const PopularClassesCard = ({popularClass}) => {
     const {_id, image, className, instructor, available_seats, book_seats, price} = popularClass;
     const {user} = useContext(AuthContext);
-    const [isDisabled, setIsDisabled] = useState(false)
+    const [, refetch] = useCart();
+    const [isDisabled, setIsDisabled] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -26,6 +28,7 @@ const PopularClassesCard = ({popularClass}) => {
             .then(res => res.json())
             .then( data => {
                 if (data.insertedId) {
+                    refetch();
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',

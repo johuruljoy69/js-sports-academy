@@ -2,12 +2,12 @@ import { useContext } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
-
-
+import useCart from '../../../hooks/useCart';
 
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
+    const [cart] =useCart();
 
     const handleLogout = () => {
         logOut()
@@ -15,19 +15,18 @@ const Navbar = () => {
             .catch(error => console.error(error))
     }
 
-
     const navItems = <>
         <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/">Home</NavLink>
         <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/instructors">Instructors</NavLink>
         <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/classes">Classes</NavLink>
-        <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/dashboard">Dashboard</NavLink>
-        <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/dashboard"><span className='flex items-center'><FaShoppingCart /><div className="badge badge-secondary ml-1">+99 </div></span></NavLink>
+        <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/dashboard/mydashboard">Dashboard</NavLink>
+        <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/dashboard/mydashboard"><span className='flex items-center'><FaShoppingCart /><div className="badge badge-secondary ml-1">+{cart?.length || 0} </div></span></NavLink>
         <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/contact">Contact</NavLink>
         
     </>
 
     return (
-        <div className="navbar h-24 text-white ">
+        <div className="navbar h-24 text-white sticky top-0 z-50 bg-gray-800 p-4 ">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
