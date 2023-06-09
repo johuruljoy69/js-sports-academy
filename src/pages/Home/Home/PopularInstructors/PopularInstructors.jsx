@@ -1,23 +1,37 @@
+import { useEffect, useState } from "react";
 import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
+import PopularInstructorCard from "./PopularInstructorCard";
 
 
 const PopularInstructors = () => {
+    const [popularInstructors, setPopularInstructors] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/instructors')
+            .then(res => res.json())
+            .then(data => setPopularInstructors(data))
+    }, [])
+
     return (
-        <div className="container mx-auto">
+        <div className="">
             <SectionTitle subHeading={"Our Popular"} heading={"Instructors"} />
 
-            <div className="grid grid-cols-3 gap-10">
-                <div className="card w-100 text-white bg-indigo-950 border border-purple-900  shadow-xl">
-                    <figure className="px-10 pt-10">
-                        <img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" className="rounded-xl" />
-                    </figure>
-                    <div className="card-body items-center text-center">
-                        <h2 className="card-title">Shoes!</h2>
-                        <p>If a dog chews shoes whose shoes does he choose?</p>
-                        <div className="card-actions">
-                            <button className="btn btn-primary">Buy Now</button>
-                        </div>
-                    </div>
+            <div className="bg-fixed" style={{
+                backgroundImage: `url("https://i.ibb.co/nngnM9x/instructor-team.png")`, backgroundSize: 'cover',
+                backgroundPosition: 'center center',
+                backgroundRepeat: 'no-repeat',
+            }} >
+                <div className="grid md:grid-cols-3 gap-10 container mx-auto px-5 pt-10">
+
+                    {
+                        popularInstructors.slice(0, 6).map(popularInstructor => <PopularInstructorCard
+                            key={popularInstructor._id}
+                            popularInstructor={popularInstructor}
+                        ></PopularInstructorCard>)
+                    }
+                </div>
+                <div className="text-center pb-10">
+                    <button className="mt-10 btn border-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:to-yellow-500 text-white font-bold py-2 px-4 rounded-lg">View More Instructor</button>
                 </div>
             </div>
         </div>

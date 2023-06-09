@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <div className='border-t mt-24'>         
+        <div className='border-t mt-24'>
             <footer className="footer p-10 text-base-content mt-12 ">
                 <div className='text-white'>
                     <div className='flex items-center'>
@@ -13,7 +13,9 @@ const Footer = () => {
                         <Link to="/" className="btn btn-ghost normal-case text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-300"> JS Sports Academy</Link>
                     </div>
                     {/* <p>A kids toy shop is a store that <br /> specializes in selling toys and <br /> games designed specifically for children.</p> */}
-                    <p className='flex items-center'><MdLocationPin size={'1rem'} /> <span className='ps-2'>Jashore Sador, Khulna, Bangladesh</span></p>
+                    <p className='flex'><MdLocationPin size={'1rem'} /> <span className='ps-2'>
+                        2050 N Loop West, Ste. 100 <br />
+                        Houston, TX 77018</span></p>
                     <p className='flex items-center'><MdEmail size={'1rem'} /> <span className='ps-2'>contact@jssportsacademy.com</span></p>
                     <p className='flex items-center'><MdPhone size={'1rem'} /> <span className='ps-2'>+8801753215648</span></p>
                 </div>
