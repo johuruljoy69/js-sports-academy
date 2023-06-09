@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <>           
+        <div className='border-t mt-24'>         
             <footer className="footer p-10 text-base-content mt-12 ">
                 <div className='text-white'>
                     <div className='flex items-center'>
@@ -14,7 +14,7 @@ const Footer = () => {
                     </div>
                     {/* <p>A kids toy shop is a store that <br /> specializes in selling toys and <br /> games designed specifically for children.</p> */}
                     <p className='flex items-center'><MdLocationPin size={'1rem'} /> <span className='ps-2'>Jashore Sador, Khulna, Bangladesh</span></p>
-                    <p className='flex items-center'><MdEmail size={'1rem'} /> <span className='ps-2'>contact@playfitsportsacademy.com</span></p>
+                    <p className='flex items-center'><MdEmail size={'1rem'} /> <span className='ps-2'>contact@jssportsacademy.com</span></p>
                     <p className='flex items-center'><MdPhone size={'1rem'} /> <span className='ps-2'>+8801753215648</span></p>
                 </div>
                 <div className='text-white'>
@@ -49,7 +49,7 @@ const Footer = () => {
                     <p>Copyright © 2023 - All right reserved by JS Sports Academy</p>
                 </div>
             </footer>
-        </>
+        </div>
     );
 };
 

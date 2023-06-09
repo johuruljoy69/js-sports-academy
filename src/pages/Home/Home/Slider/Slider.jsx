@@ -10,7 +10,7 @@ const Slider = () => {
     return (
         <>
             
-            <SectionTitle subHeading={"Our Campus"} heading={"Activities"}/>
+            <SectionTitle subHeading={"Our Summer Camp"} heading={"Activities"}/>
             
             <div>
                 <Swiper
