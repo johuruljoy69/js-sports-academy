@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import AllClassesCard from "./AllClassesCard";
+import { Helmet } from "react-helmet";
 
 
 
@@ -14,6 +15,9 @@ const AllClasses = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>JSSA | All Class</title>
+            </Helmet>
            <div style={{
                 backgroundImage: `url("https://i.ibb.co/gmmBwCj/class-room.jpg")`, backgroundSize: 'cover',
                 backgroundPosition: 'center center',

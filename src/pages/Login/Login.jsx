@@ -65,6 +65,7 @@ const Login = () => {
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
                             </div>
+                            {/* TODO: validate Captcha (M-76-2) */}
                             <div className="form-control mt-6">
                                 <input className="btn bg-orange-500 border-0 hover:bg-orange-800 text-white" type="submit" value="Login" />
                             </div>

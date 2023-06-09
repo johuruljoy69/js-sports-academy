@@ -12,7 +12,7 @@ const PopularInstructorCard = ({popularInstructor}) => {
                 <p>{email}</p>
                 <p> Taken by Class: {classesTaken}</p>
                 <div className="card-actions mt-2">
-                    <button className="btn btn-primary">Show Classes</button>
+                    <button className="btn bg-orange-500 hover:bg-orange-800 border-b-4 text-white">Show Classes</button>
                 </div>
             </div>
         </div>

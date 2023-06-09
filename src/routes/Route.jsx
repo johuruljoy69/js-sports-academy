@@ -9,6 +9,7 @@ import DashBoard from "../layouts/Dashboard";
 import Instructors from "../pages/Instructors/Instructors";
 import AllClasses from "../pages/AllClasses/AllClasses";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
     },
     {
         path: 'dashboard',
-        element: <DashBoard></DashBoard>
+        element: <PrivateRoute><DashBoard></DashBoard></PrivateRoute>
     }
 ]);
 export default router;

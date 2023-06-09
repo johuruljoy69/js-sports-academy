@@ -30,7 +30,7 @@ const PopularClasses = () => {
                     }
                 </div>
                 <div className="text-center pb-10">
-                    <button className="mt-10 btn border-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:to-yellow-500 text-white font-bold py-2 px-4 rounded-lg">View More Class</button>
+                    <button className="mt-10 btn bg-orange-500 hover:bg-orange-800 border-b-4 text-white">View More Class</button>
                 </div>
             </div>
         </div>

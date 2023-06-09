@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import InstructorsCard from "./InstructorsCard";
+import { Helmet } from "react-helmet";
 
 
 const Instructors = () => {
@@ -12,6 +13,9 @@ const Instructors = () => {
     }, [])
     return (
         <div>
+            <Helmet>
+                <title>JSSA | Instructors</title>
+            </Helmet>
             <div style={{
                 backgroundImage: `url("https://i.ibb.co/nngnM9x/instructor-team.png")`, backgroundSize: 'cover',
                 backgroundPosition: 'center center',

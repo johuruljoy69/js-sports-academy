@@ -13,7 +13,7 @@ const AllClassesCard = ({allClass}) => {
                 <p>Booked Seats: {book_seats} </p>
                 <p>Price: ${price} </p>
                 <div className="card-actions">
-                    <button className="btn btn-primary">Book Now</button>
+                    <button className="btn btn-primary">Add To Booking</button>
                 </div>
             </div>
         </div>
