@@ -7,7 +7,7 @@ import { FaTrashAlt } from "react-icons/fa";
 
 const MyDashboard = () => {
     const [cart, refetch] = useCart();
-    console.log(cart);
+    // console.log(cart);
     const total = cart.reduce((sum, item) => item.price + sum, 0);
 
     const handleDelete = item => {
@@ -45,18 +45,18 @@ const MyDashboard = () => {
             <Helmet>
                 <title>JSSA | My Dashboard</title>
             </Helmet>
-            <div className="uppercase font-semibold flex justify-evenly gap-7 md:h-14 items-center px-5 py-3 border border-purple-700 rounded-md">
-                <h3 className="md:text-3xl">Total Classes: {cart.length} </h3>
-                <h3 className="md:text-3xl">Total Price: ${total} </h3>
+            <div className="uppercase font-semibold flex justify-evenly gap-7 md:h-14 items-center px-5 py-3 mb-5 border border-purple-700 rounded-md">
+                <h3 className="md:text-2xl">Total Classes: {cart.length} </h3>
+                <h3 className="md:text-2xl">Total Price: ${total} </h3>
                 <Link to="/dashboard/payment"><button className="btn btn-sm border-0 text-white bg-orange-500 hover:bg-green-700">Pay Now</button> </Link>
             </div>
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
                     {/* head */}
-                    <thead>
+                    <thead className="font-semibold bg-purple-900 text-white">
                         <tr>
                             <th> S/N </th>
-                            <th>Photo</th>
+                            <th>Class Photo</th>
                             <th>Class Name</th>
                             <th>Price</th>
                             <th>Action</th>
