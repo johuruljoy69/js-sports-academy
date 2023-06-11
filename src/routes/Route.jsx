@@ -12,6 +12,9 @@ import ErrorPage from "../components/ErrorPage/ErrorPage";
 import PrivateRoute from "./PrivateRoute";
 import MyDashboard from "../pages/Dashboard/MyDashboard/MyDashboard";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
+import AddAClass from "../pages/Dashboard/MyDashboard/AddAClass";
+import InstructorRoute from "./InstructorRoute";
 
 
 const router = createBrowserRouter([
@@ -53,6 +56,14 @@ const router = createBrowserRouter([
             {
                 path: 'allusers',
                 element: <AllUsers></AllUsers>
+            },
+            {
+                path: 'manageusers',
+                element: <ManageUsers></ManageUsers>
+            },
+            {
+                path: 'addclass',
+                element: <InstructorRoute><AddAClass></AddAClass></InstructorRoute>
             }
         ]
     }

@@ -16,5 +16,6 @@ const useInstructor = () => {
         }
     })
     return [isInstructor, isInstructorLoading]
-}
+};
+
 export default useInstructor;

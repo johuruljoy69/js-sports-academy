@@ -5,12 +5,50 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 
-const AllUsers = () => {
-    const [axiosSecure] = useAxiosSecure()
+const ManageUsers = () => {
+    const [axiosSecure] = useAxiosSecure();
     const { data: users = [], refetch } = useQuery(['users'], async () => {
         const res = await axiosSecure.get('/users')
         return res.data;
     })
+
+    const handleMakeAdmin = user => {
+        fetch(`http://localhost:5000/users/admin/${user._id}`, {
+            method: 'PATCH'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount) {
+                    refetch();
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `${user.name} is an Admin Now!`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
+    };
+
+    const handleMakeInstructor = user => {
+        fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+            method: 'PATCH'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount) {
+                    refetch();
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `${user.name} is an Instructor Now!`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
+    }
 
     const handleDelete = user => {
         Swal.fire({
@@ -58,6 +96,8 @@ const AllUsers = () => {
                             <th>Photo</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Role</th>
+                            <th>Role</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -80,6 +120,11 @@ const AllUsers = () => {
                                     {user.name}
                                 </td>
                                 <td >{user.email}</td>
+                                <td >{user.role === 'admin' ? <button className="btn btn-ghost btn-xl bg-green-700 hover:bg-green-900 text-white">Admin</button> : <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost btn-xl bg-orange-600 hover:bg-orange-900 text-white">Make Admin</button>}
+                                </td>
+
+                                <td >{user.role === 'instructor' ? <button className="btn btn-ghost btn-xl bg-blue-600 hover:bg-blue-900 text-white">Instructor</button> : <button onClick={() => handleMakeInstructor(user)} className="btn btn-ghost btn-xl bg-purple-600 hover:bg-purple-950 text-white">Make Instructor</button>}
+                                </td>
                                 <td>
                                     <button onClick={() => handleDelete(user)} className="btn btn-ghost btn-xl rounded-full bg-red-800 hover:bg-black text-white"> <FaTrashAlt /> </button>
                                 </td>
@@ -93,4 +138,4 @@ const AllUsers = () => {
     );
 };
 
-export default AllUsers;
+export default ManageUsers;

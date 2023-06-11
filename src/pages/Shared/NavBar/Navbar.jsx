@@ -3,11 +3,15 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import useCart from '../../../hooks/useCart';
+import useAdmin from '../../../hooks/useAdmin';
+import useInstructor from '../../../hooks/useInstructor';
 
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
-    const [cart] =useCart();
+    const [cart] = useCart();
+    const [isAdmin] = useAdmin();
+    const [isInstructor] = useInstructor();
 
     const handleLogout = () => {
         logOut()
@@ -16,13 +20,21 @@ const Navbar = () => {
     }
 
     const navItems = <>
-        <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/">Home</NavLink>
-        <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/instructors">Instructors</NavLink>
-        <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/classes">Classes</NavLink>
-        <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/dashboard/mydashboard">Dashboard</NavLink>
-        <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/dashboard/mydashboard"><span className='flex items-center'><FaShoppingCart /><div className="badge badge-secondary ml-1">+{cart?.length || 0} </div></span></NavLink>
-        <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/contact">Contact</NavLink>
-        
+        {
+            isAdmin || isInstructor ? <><NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/">Home</NavLink>
+                <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/instructors">Instructors</NavLink>
+                <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/classes">Classes</NavLink>
+                <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/dashboard/mydashboard">Dashboard</NavLink>
+                <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/contact">Contact</NavLink> </> :
+                <>
+                    <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/">Home</NavLink>
+                    <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/instructors">Instructors</NavLink>
+                    <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/classes">Classes</NavLink>
+                    <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/dashboard/mydashboard"><span className='flex items-center'><FaShoppingCart /><div className="badge badge-secondary ml-1">+{cart?.length || 0} </div></span></NavLink>
+                    <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/contact">Contact</NavLink>
+                </>
+        }
+
     </>
 
     return (
