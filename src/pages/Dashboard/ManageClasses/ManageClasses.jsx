@@ -5,7 +5,8 @@ import Swal from "sweetalert2";
 
 
 const ManageClasses = () => {
-    const [classes, refetch] = useClasses();
+    const [classes, , refetch] = useClasses();
+    const [axiosSecure] = useAxiosSecure();
 
 
     const handleDelete = item => {
@@ -20,7 +21,7 @@ const ManageClasses = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                useAxiosSecure.delete(`/classes/${item._id}`)
+                axiosSecure.delete(`/classes/${item._id}`)
                     .then(res => {
                         console.log('deleted res', res.data);
                         if (res.data.deletedCount > 0) {

@@ -13,10 +13,13 @@ import PrivateRoute from "./PrivateRoute";
 import MyDashboard from "../pages/Dashboard/MyDashboard/MyDashboard";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
-import AddAClass from "../pages/Dashboard/MyDashboard/AddAClass";
-import InstructorRoute from "./InstructorRoute";
 import ManageClasses from "../pages/Dashboard/ManageClasses/ManageClasses";
 import AdminRoute from "./AdminRoute";
+import AddAClass from "../pages/Dashboard/AddAClass/AddAClass";
+import InstructorRoute from "./InstructorRoute";
+import Payment from "../pages/Dashboard/Payment/Payment";
+
+
 
 
 const router = createBrowserRouter([
@@ -56,17 +59,25 @@ const router = createBrowserRouter([
                 element: <MyDashboard></MyDashboard>
             },
             {
+                path: 'payment',
+                element: <Payment></Payment>
+            },
+
+            // Admin Routes
+            {
                 path: 'manageclasses',
                 element: <AdminRoute><ManageClasses></ManageClasses></AdminRoute>
             },
             {
                 path: 'allusers',
-                element: <AllUsers></AllUsers>
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
             {
                 path: 'manageusers',
-                element: <ManageUsers></ManageUsers>
+                element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
             },
+
+            // Instructor Routes
             {
                 path: 'addclass',
                 element: <InstructorRoute><AddAClass></AddAClass></InstructorRoute>
