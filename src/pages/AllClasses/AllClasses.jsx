@@ -1,18 +1,12 @@
-import { useEffect, useState } from "react";
 import AllClassesCard from "./AllClassesCard";
 import { Helmet } from "react-helmet";
+import useClasses from "../../hooks/useClasses";
 
 
 
 const AllClasses = () => {
-    const [allClasses, setAllClasses] = useState([])
-
-    useEffect(() => {
-        fetch('http://localhost:5000/classes')
-        .then(res => res.json())
-        .then(data => setAllClasses(data))
-    },[])
-
+    const [allClasses] = useClasses();
+  
     return (
         <div>
             <Helmet>

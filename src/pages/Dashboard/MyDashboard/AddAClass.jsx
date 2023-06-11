@@ -1,47 +1,48 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
-// import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+
 
 const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
 
 const AddAClass = () => {
-    // const [axiosSecure] = useAxiosSecure();
-    const {user} = useAuth();
+    const [axiosSecure] = useAxiosSecure();
+    const { user } = useAuth();
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
 
-    const onSubmit = data => {        
+    const onSubmit = data => {
         const formData = new FormData();
         formData.append('image', data.classImage[0])
         fetch(img_hosting_url, {
             method: 'POST',
             body: formData
         })
-        .then(res => res.json())
-        .then(imgResponse => {
-            console.log(imgResponse);
-            if(imgResponse.success){
-                const imgURL = imgResponse.data.display_url;
-                const {className, name, email, availableSeats, price} = data;
-                const classItem = {className, name, email, availableSeats, price: parseFloat(price), image:imgURL}
-                console.log(classItem)
-                // axiosSecure.post('/menu', newItem)
-                // .then(data => {
-                //     console.log('after posting new menu item', data.data)
-                //     if(data.data.insertedId){
-                //         reset();
-                //         Swal.fire({
-                //             position: 'top-end',
-                //             icon: 'success',
-                //             title: 'Item added successfully',
-                //             showConfirmButton: false,
-                //             timer: 1500
-                //           })
-                //     }
-                // })
-            }
-        })
+            .then(res => res.json())
+            .then(imgResponse => {
+                console.log(imgResponse);
+                if (imgResponse.success) {
+                    const imgURL = imgResponse.data.display_url;
+                    const { class_name, instructor, email, available_seats, enrolled_seats, price, details} = data;
+                    const classItem = { class_name, instructor, email, available_seats, enrolled_seats, price: parseFloat(price), details, image: imgURL }
+                    // console.log(classItem)
+                    axiosSecure.post('/classes', classItem)
+                        .then(data => {
+                            console.log('after posting new Class item', data.data)
+                            if (data.data.insertedId) {
+                                reset();
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'Class added successfully',
+                                    showConfirmButton: false,
+                                    timer: 1000
+                                })
+                            }
+                        })
+                }
+            })
 
     };
 
@@ -57,50 +58,18 @@ const AddAClass = () => {
                         <span className="label-text font-semibold">Class Name*</span>
                     </label>
                     <input type="text" placeholder="Class Name"
-                        {...register("className", { required: true, maxLength: 120 })}
+                        {...register("class_name", { required: true, maxLength: 120 })}
                         className="input input-bordered w-full " />
-                        {errors.className && <p className="text-red-500 text-xs italic">Class name is required</p>}
+                    {errors.class_name && <p className="text-red-500 text-xs italic">Class name is required</p>}
                 </div>
-                <div className="form-control w-full my-4">
-                    <label className="label">
-                        <span className="label-text">Class Image*</span>
-                    </label>
-                    <input type="file" {...register("classImage", { required: true })} className="file-input file-input-bordered w-full " />
-                    {errors.classImage && <p className="text-red-500 text-xs italic">Class Image is required</p>}
-                </div>
-                <div className="flex my-4">
-                    <div className="form-control w-full mb-4">
+                {/* row-2 */}
+                <div className="flex items-center my-4">
+                    <div className="form-control w-full my-4">
                         <label className="label">
-                            <span className="label-text font-semibold">Instructor Name</span>
+                            <span className="label-text">Class Image*</span>
                         </label>
-                        <input type="text"
-                        defaultValue={user?.displayName}
-                        placeholder="Instructor Name"
-                        readOnly 
-                            {...register("name", { required: true, maxLength: 120 })}
-                            className="input input-bordered w-full " />
-                            {errors.name && <p className="text-red-500 text-xs italic">Instructor Name is required</p>}
-                    </div>
-                    <div className="form-control w-full ml-4">
-                        <label className="label">
-                            <span className="label-text font-semibold">Instructor Email</span>
-                        </label>
-                        <input type="text" 
-                        defaultValue={user?.email}
-                        placeholder="Instructor Email"
-                        readOnly 
-                            {...register("email", { required: true, maxLength: 120 })}
-                            className="input input-bordered w-full " />
-                            {errors.email && <p className="text-red-500 text-xs italic">Instructor Email is required</p>}
-                    </div>
-                </div>
-                <div className="flex my-4">
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="label-text font-semibold">Available Seats*</span>
-                        </label>
-                        <input type="number" {...register("availableSeats", { required: true })} placeholder="Available Seats" className="input input-bordered w-full " />
-                        {errors.availableSeats && <p className="text-red-500 text-xs italic">Seat Number is required</p>}
+                        <input type="file" {...register("classImage", { required: true })} className="file-input file-input-bordered w-full " />
+                        {errors.classImage && <p className="text-red-500 text-xs italic">Class Image is required</p>}
                     </div>
                     <div className="form-control w-full ml-4">
                         <label className="label">
@@ -110,6 +79,51 @@ const AddAClass = () => {
                         {errors.price && <p className="text-red-500 text-xs italic">Price is required</p>}
                     </div>
                 </div>
+                {/* row-3 */}
+                <div className="flex my-4">
+                    <div className="form-control w-full mb-4">
+                        <label className="label">
+                            <span className="label-text font-semibold">Instructor Name</span>
+                        </label>
+                        <input type="text"
+                            defaultValue={user?.displayName}
+                            placeholder="Instructor Name"
+                            readOnly
+                            {...register("instructor", { required: true, maxLength: 120 })}
+                            className="input input-bordered w-full " />
+                        {errors.instructor && <p className="text-red-500 text-xs italic">Instructor Name is required</p>}
+                    </div>
+                    <div className="form-control w-full ml-4">
+                        <label className="label">
+                            <span className="label-text font-semibold">Instructor Email</span>
+                        </label>
+                        <input type="text"
+                            defaultValue={user?.email}
+                            placeholder="Instructor Email"
+                            readOnly
+                            {...register("email", { required: true, maxLength: 120 })}
+                            className="input input-bordered w-full " />
+                        {errors.email && <p className="text-red-500 text-xs italic">Instructor Email is required</p>}
+                    </div>
+                </div>
+                {/* row-4 */}
+                <div className="flex my-4">
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text font-semibold">Available Seats*</span>
+                        </label>
+                        <input type="number" {...register("available_seats", { required: true })} placeholder="Available Seats" className="input input-bordered w-full " />
+                        {errors.available_seats && <p className="text-red-500 text-xs italic">Available Seats Number is required</p>}
+                    </div>
+                    <div className="form-control w-full ml-4">
+                        <label className="label">
+                            <span className="label-text font-semibold">Enrolled Seats*</span>
+                        </label>
+                        <input type="number" {...register("enrolled_seats", { required: true })} placeholder="Enrolled Seats" className="input input-bordered w-full " />
+                        {errors.enrolled_seats && <p className="text-red-500 text-xs italic">Enrolled Seats is required</p>}
+                    </div>
+                </div>
+                {/* row-5 */}
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text">Class Details</span>

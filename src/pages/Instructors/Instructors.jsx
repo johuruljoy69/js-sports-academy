@@ -1,16 +1,12 @@
-import { useEffect, useState } from "react";
 import InstructorsCard from "./InstructorsCard";
 import { Helmet } from "react-helmet";
+import useInstructors from "../../hooks/useInstructors";
 
 
 const Instructors = () => {
-    const [instructors, setInstructors] = useState([]);
+    const [instructors] = useInstructors();
 
-    useEffect(() => {
-        fetch('http://localhost:5000/instructors')
-            .then(res => res.json())
-            .then(data => setInstructors(data))
-    }, [])
+
     return (
         <div>
             <Helmet>

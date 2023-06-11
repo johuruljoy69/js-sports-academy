@@ -1,16 +1,10 @@
-import { useEffect, useState } from "react";
 import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
 import PopularInstructorCard from "./PopularInstructorCard";
+import useInstructors from "../../../../hooks/useInstructors";
 
 
 const PopularInstructors = () => {
-    const [popularInstructors, setPopularInstructors] = useState([]);
-
-    useEffect(() => {
-        fetch('http://localhost:5000/instructors')
-            .then(res => res.json())
-            .then(data => setPopularInstructors(data))
-    }, [])
+    const [popularInstructors] =useInstructors();
 
     return (
         <div className="">

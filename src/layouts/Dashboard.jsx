@@ -34,7 +34,7 @@ const Dashboard = () => {
                         isAdmin ? (
                             <>
                                 <li> <NavLink to="/dashboard/adminhome" ><FaHome /> Admin Home </NavLink> </li>
-                                <li> <NavLink to="/dashboard/manageclass" ><FaBook /> Manage Classes </NavLink> </li>
+                                <li> <NavLink to="/dashboard/manageclasses" ><FaBook /> Manage Classes </NavLink> </li>
                                 <li> <NavLink to="/dashboard/manageusers" ><FaUsers /> Manage Users </NavLink> </li>
                                 {/* <li> <NavLink to="/dashboard/allusers" ><FaUsers /> All Users </NavLink> </li> */}
                             </>

@@ -1,16 +1,10 @@
-import { useEffect, useState } from "react";
 import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
 import PopularClassesCard from "./PopularClassesCard";
+import useClasses from "../../../../hooks/useClasses";
 
 
 const PopularClasses = () => {
-    const [popularClasses, setPopularClasses] = useState([])
-
-    useEffect(() => {
-        fetch('http://localhost:5000/classes')
-            .then(res => res.json())
-            .then(data => setPopularClasses(data))
-    }, [])
+    const [popularClasses] = useClasses();
 
     return (
         <div className="">

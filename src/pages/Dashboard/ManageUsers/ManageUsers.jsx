@@ -81,7 +81,7 @@ const ManageUsers = () => {
     };
 
     return (
-        <div className="bg-slate-200 p-10">
+        <div className="bg-slate-300 p-10">
             <Helmet>
                 <title>JSSA | All Users</title>
             </Helmet>
