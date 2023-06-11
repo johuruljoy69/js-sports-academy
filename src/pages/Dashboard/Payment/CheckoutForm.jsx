@@ -2,6 +2,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useEffect, useState } from "react";
+import Swal from 'sweetalert2'
 import './Checkout.css'
 
 
@@ -19,7 +20,7 @@ const CheckoutForm = ({ cart, price }) => {
         if (price > 0) {
             axiosSecure.post('/create-payment-intent', { price })
                 .then(res => {
-                    console.log(res.data.clientSecret)
+                    // console.log(res.data.clientSecret)
                     setClientSecret(res.data.clientSecret);
                 })
         }
@@ -38,7 +39,7 @@ const CheckoutForm = ({ cart, price }) => {
             return
         }
 
-        const { error } = await stripe.createPaymentMethod({
+        const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
             card
         })
@@ -49,7 +50,7 @@ const CheckoutForm = ({ cart, price }) => {
         }
         else {
             setCardError('');
-            // console.log('payment method', paymentMethod)
+            console.log('payment method', paymentMethod)
         }
 
         setProcessing(true)
@@ -83,15 +84,21 @@ const CheckoutForm = ({ cart, price }) => {
                 date: new Date(),
                 quantity: cart.length,
                 cartItems: cart.map(item => item._id),
-                menuItems: cart.map(item => item.menuItemId),
+                classItems: cart.map(item => item.classItemId),
                 status: 'service pending',
-                itemNames: cart.map(item => item.name)
+                classNames: cart.map(item => item.className)
             }
             axiosSecure.post('/payments', payment)
-                .then(res => {
-                    console.log(res.data);
-                    if (res.data.result.insertedId) {
-                        // display confirm
+                .then(data => {
+                    console.log(data.data);
+                    if (data.data.result.insertedId) {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Payment Complete Successfully',
+                            showConfirmButton: false,
+                            timer: 1000
+                        })
                     }
                 })
         }
@@ -123,7 +130,7 @@ const CheckoutForm = ({ cart, price }) => {
                 </button>
             </form>
             {cardError && <p className="text-red-600 ml-8">{cardError}</p>}
-            {transactionId && <p className="text-green-500">Transaction complete with transactionId: {transactionId}</p>}
+            {transactionId && <p className="text-orange-500">Transaction completed & transactionId: {transactionId}</p>}
         </>
     );
 };
