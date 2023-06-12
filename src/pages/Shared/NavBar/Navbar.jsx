@@ -5,6 +5,8 @@ import { AuthContext } from '../../../contexts/AuthProvider';
 import useCart from '../../../hooks/useCart';
 import useAdmin from '../../../hooks/useAdmin';
 import useInstructor from '../../../hooks/useInstructor';
+import logo from '../../../assets/logo.svg'
+
 
 
 const Navbar = () => {
@@ -13,6 +15,7 @@ const Navbar = () => {
     const [isAdmin] = useAdmin();
     const [isInstructor] = useInstructor();
 
+
     const handleLogout = () => {
         logOut()
             .then(() => { })
@@ -20,6 +23,18 @@ const Navbar = () => {
     }
 
     const navItems = <>
+
+        <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/">Home</NavLink>
+        <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/instructors">Instructors</NavLink>
+        <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/classes">Classes</NavLink>
+        {
+            isAdmin ? <Link to="/dashboard/adminhome">Dashboard</Link>: (isInstructor ? <Link to="/dashboard/instructorhome">Dashboard</Link> : <Link to="/dashboard/userhome">Dashboard</Link>)
+        }        
+         <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/dashboard/mydashboard"><span className='flex items-center'><FaShoppingCart /><div className="badge badge-secondary ml-1">+{cart?.length || 0} </div></span></NavLink>        
+        <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/contact">Contact</NavLink>
+
+
+{/* 
         {
             isAdmin || isInstructor ? <><NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/">Home</NavLink>
                 <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/instructors">Instructors</NavLink>
@@ -33,7 +48,7 @@ const Navbar = () => {
                     <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/dashboard/mydashboard"><span className='flex items-center'><FaShoppingCart /><div className="badge badge-secondary ml-1">+{cart?.length || 0} </div></span></NavLink>
                     <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/contact">Contact</NavLink>
                 </>
-        }
+        } */}
 
     </>
 
@@ -48,8 +63,7 @@ const Navbar = () => {
                         {navItems}
                     </ul>
                 </div>
-                {/* <img className='rounded-full w-14'  alt="logo" /> */}
-                <Link to="/" className="btn btn-ghost normal-case text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-300"> JSSA</Link>
+                <Link to="/"> <img className='rounded-full w-14' src={logo} alt="logo" /></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal font-semibold flex gap-5 items-center">

@@ -91,7 +91,7 @@ const CheckoutForm = ({ cart, price }) => {
             axiosSecure.post('/payments', payment)
                 .then(data => {
                     console.log(data.data);
-                    if (data.data.result.insertedId) {
+                    if (data.data.result.deletedCount > 0) {
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',

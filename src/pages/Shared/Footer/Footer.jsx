@@ -1,7 +1,7 @@
-
 import { MdLocationPin, MdEmail, MdPhone } from 'react-icons/md';
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube, FaPinterest } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import logo from '../../../assets/logo.svg'
 
 const Footer = () => {
     return (
@@ -9,7 +9,7 @@ const Footer = () => {
             <footer className="footer p-10 text-base-content mt-12 ">
                 <div className='text-white'>
                     <div className='flex items-center'>
-
+                        <img className='rounded-full w-14' src={logo} alt="" />
                         <Link to="/" className="btn btn-ghost normal-case text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-300"> JS Sports Academy</Link>
                     </div>
                     {/* <p>A kids toy shop is a store that <br /> specializes in selling toys and <br /> games designed specifically for children.</p> */}

@@ -18,6 +18,9 @@ import AdminRoute from "./AdminRoute";
 import AddAClass from "../pages/Dashboard/AddAClass/AddAClass";
 import InstructorRoute from "./InstructorRoute";
 import Payment from "../pages/Dashboard/Payment/Payment";
+import UserHome from "../pages/Dashboard/UserHome/UserHome";
+import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
+import InstructorHome from "../pages/Dashboard/InstructorHome/InstructorHome";
 
 
 
@@ -62,8 +65,16 @@ const router = createBrowserRouter([
                 path: 'payment',
                 element: <Payment></Payment>
             },
+            {
+                path: 'userhome',
+                element: <UserHome></UserHome>
+            },
 
             // Admin Routes
+            {
+                path: 'adminhome',
+                element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+            },
             {
                 path: 'manageclasses',
                 element: <AdminRoute><ManageClasses></ManageClasses></AdminRoute>
@@ -78,6 +89,10 @@ const router = createBrowserRouter([
             },
 
             // Instructor Routes
+            {
+                path: 'instructorhome',
+                element: <InstructorRoute><InstructorHome></InstructorHome></InstructorRoute>
+            },
             {
                 path: 'addclass',
                 element: <InstructorRoute><AddAClass></AddAClass></InstructorRoute>
