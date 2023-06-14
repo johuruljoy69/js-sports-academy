@@ -10,18 +10,13 @@
 6. After Payment classes students can show payment history and enrolled classes
 
 ## Technology used
-1. 
-• HTML5/CSS3 • Tailwind CSS • Bootstrap •
-React Bootstrap • JavaScript • flow chart •
-React.js • Next.js
- 2.
-• React Router • Firebase • Rest API • React
-Query • Node.js • Express.js • MongoDB
-3. 
-• Firebase • Next JS • Three.js • JWT •
-Tanstack Query • Axios JS
+
+### • HTML5/CSS3 • Tailwind CSS • Bootstrap • React Bootstrap • JavaScript • flow chart • React.js • Next.js
+
+### React Router • Firebase • Rest API • React Query • Node.js • Express.js • MongoDB
+
+### Firebase • Next JS • Three.js • JWT •Tanstack Query • Axios JS
 
 ## TOOLS
-• GitHub • Netlify • Vercel • Surge • React‑
-Awesome‑Components • Visual Studio
-Code • Chrome Dev tool • Figmagit 
+### • GitHub • Netlify • Vercel • Surge • React‑Awesome‑Components • Visual Studio Code • Chrome Dev tool • Figmagit 
+

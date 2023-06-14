@@ -27,7 +27,7 @@ const Slider = () => {
                     modules={[Autoplay, Pagination, Navigation]}
                     className="mySwiper mx-auto text-center md:w-1/2"
                 >
-                    <SwiperSlide> <img src="https://i.ibb.co/g9qMzqB/camp-pic-1.jpg" alt="" /> </SwiperSlide>
+                    <SwiperSlide><img src="https://i.ibb.co/g9qMzqB/camp-pic-1.jpg" alt="" /> </SwiperSlide>
                     <SwiperSlide><img src="https://i.ibb.co/ZWQmsvV/camp-pic-2.jpg" alt="" /></SwiperSlide>
                     <SwiperSlide><img src="https://i.ibb.co/GHGPqbS/camp-pic-3.jpg" alt="" /></SwiperSlide>
                     <SwiperSlide><img src="https://i.ibb.co/CKTgcC4/camp-pic-4.jpg" alt="" /></SwiperSlide>
