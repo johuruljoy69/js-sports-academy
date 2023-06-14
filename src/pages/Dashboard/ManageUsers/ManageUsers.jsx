@@ -96,7 +96,6 @@ const ManageUsers = () => {
                 <title>JSSA | All Users</title>
             </Helmet>
             <div className="text-center w-3/4 mb-10 mx-auto space-y-3">
-                {/* <p className="text-orange-500 text-xl font-semibold">Hurry Up</p> */}
                 <h1 className="md:text-5xl text-slate-600 font-bold uppercase border-y-4 border-slate-400 py-4 ">Manage Users</h1>
             </div>
 

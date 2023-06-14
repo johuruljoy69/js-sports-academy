@@ -45,7 +45,6 @@ const ManageClasses = () => {
                 <title>JSSA | Manage Class</title>
             </Helmet>
             <div className="text-center w-3/4 mb-10 mx-auto space-y-3">
-                {/* <p className="text-orange-500 text-xl font-semibold">Hurry Up</p> */}
                 <h1 className="md:text-5xl text-slate-600 font-bold uppercase border-y-4 border-slate-400 py-4 ">Manage All Classes</h1>
             </div>
             <div className="overflow-x-auto w-full">
@@ -76,7 +75,7 @@ const ManageClasses = () => {
                                         </div>
                                     </div>
                                 </td>
-                                <td>{item.className}</td>
+                                <td>{item.class_name}</td>
                                 <td>{item.instructor}</td>
                                 <td>{item.email}</td>
                                 <td className="text-center">{item.available_seats}</td>

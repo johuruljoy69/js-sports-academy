@@ -86,12 +86,13 @@ const CheckoutForm = ({ cart, price }) => {
                 cartItems: cart.map(item => item._id),
                 classItems: cart.map(item => item.classItemId),
                 status: 'service pending',
-                classNames: cart.map(item => item.className)
+                classNames: cart.map(item => item.className),
+                image: cart.map(item => item.image)
             }
             axiosSecure.post('/payments', payment)
                 .then(data => {
                     console.log(data.data);
-                    if (data.data.result.deletedCount > 0) {
+                    if (data.data.result.insertedId) {
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',

@@ -24,6 +24,7 @@ import InstructorHome from "../pages/Dashboard/InstructorHome/InstructorHome";
 import SinglePayment from "../pages/Dashboard/Payment/SinglePayment";
 import ContactForm from "../pages/Contact/Contact";
 import PaymentHistory from "../pages/Dashboard/Payment/PaymentHistory";
+import EnrolledClass from "../pages/Dashboard/EnrolledClass/EnrolledClass";
 
 
 
@@ -65,7 +66,7 @@ const router = createBrowserRouter([
         element: <PrivateRoute><DashBoard></DashBoard></PrivateRoute>,
         children: [
             {
-                path:'mydashboard',
+                path: 'mydashboard',
                 element: <MyDashboard></MyDashboard>
             },
             {
@@ -73,8 +74,12 @@ const router = createBrowserRouter([
                 element: <Payment></Payment>
             },
             {
-                path: 'history',
+                path: 'paymenthistory',
                 element: <PaymentHistory></PaymentHistory>
+            },
+            {
+                path: 'enrolledclasses',
+                element: <EnrolledClass></EnrolledClass>
             },
             {
                 path: 'singlepayment',
