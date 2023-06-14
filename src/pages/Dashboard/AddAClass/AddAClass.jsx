@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 
 const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
@@ -48,6 +49,9 @@ const AddAClass = () => {
 
     return (
         <div className=" w-[800px] mx-auto bg-slate-300 p-10">
+            <Helmet>
+                <title>JSSA | Add Class</title>
+            </Helmet>
             <div className="text-center w-2/3 mb-10 mx-auto space-y-3">
                 <p className="text-orange-500 text-xl font-semibold">Whats New</p>
                 <h1 className="md:text-5xl text-slate-600 font-bold uppercase border-y-4 border-slate-400 py-4 ">Add A Class</h1>

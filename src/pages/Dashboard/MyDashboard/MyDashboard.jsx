@@ -21,7 +21,7 @@ const MyDashboard = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/carts/${item._id}`, {
+                fetch(`https://b7a12-summer-camp-server-side-johuruljoy69.vercel.app/carts/${item._id}`, {
                     method: 'DELETE',
                 })
                     .then(res => res.json())
@@ -59,6 +59,7 @@ const MyDashboard = () => {
                             <th>Class Photo</th>
                             <th>Class Name</th>
                             <th>Price</th>
+                            <th>Payment</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -81,6 +82,7 @@ const MyDashboard = () => {
                                     {item.className}
                                 </td>
                                 <td >${item.price}</td>
+                                <td><Link to="/dashboard/singlepayment"><button className="btn btn-sm border-0 text-white bg-orange-500 hover:bg-green-700">Pay</button> </Link></td>
                                 <td>
                                     <button onClick={() => handleDelete(item)} className="btn btn-ghost btn-xl rounded-full bg-red-800 hover:bg-black text-white"> <FaTrashAlt /> </button>
                                 </td>

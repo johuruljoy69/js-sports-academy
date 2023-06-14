@@ -4,6 +4,7 @@ import Banner from "./Banner/Banner";
 import PopularClasses from "./PopularClasses/PopularClasses";
 import PopularInstructors from "./PopularInstructors/PopularInstructors";
 import Slider from "./Slider/Slider";
+import SubscribeOffer from "./SubscribeOffer/SubscribeOffer";
 
 const Home = () => {
     return (
@@ -11,12 +12,13 @@ const Home = () => {
             <Helmet>
                 <title> JSSA | Home </title>
             </Helmet>
-            <Banner />
-            <Slider />
+            <Banner />            
             <PopularInstructors />
             <About />
             <PopularClasses />
             {/* TODO: Parallax use for customer reviews (M-74-8) */}
+            <Slider />
+            <SubscribeOffer />
         </div>
     );
 };

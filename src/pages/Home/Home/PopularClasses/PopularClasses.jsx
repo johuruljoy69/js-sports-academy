@@ -1,6 +1,7 @@
 import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
 import PopularClassesCard from "./PopularClassesCard";
 import useClasses from "../../../../hooks/useClasses";
+import { Link } from "react-router-dom";
 
 
 const PopularClasses = () => {
@@ -24,7 +25,7 @@ const PopularClasses = () => {
                     }
                 </div>
                 <div className="text-center pb-10">
-                    <button className="mt-10 btn bg-orange-500 hover:bg-orange-800 border-b-4 text-white">View More Class</button>
+                    <Link to="/classes"><button className="mt-10 btn bg-orange-500 hover:bg-orange-800 border-b-4 text-white">View More Class</button></Link>
                 </div>
             </div>
         </div>

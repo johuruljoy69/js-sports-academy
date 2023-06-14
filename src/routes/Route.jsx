@@ -21,6 +21,9 @@ import Payment from "../pages/Dashboard/Payment/Payment";
 import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 import InstructorHome from "../pages/Dashboard/InstructorHome/InstructorHome";
+import SinglePayment from "../pages/Dashboard/Payment/SinglePayment";
+import ContactForm from "../pages/Contact/Contact";
+import PaymentHistory from "../pages/Dashboard/Payment/PaymentHistory";
 
 
 
@@ -50,6 +53,10 @@ const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <SignUp></SignUp>
+            },
+            {
+                path: 'contact',
+                element: <ContactForm></ContactForm>
             }
         ]
     },
@@ -64,6 +71,14 @@ const router = createBrowserRouter([
             {
                 path: 'payment',
                 element: <Payment></Payment>
+            },
+            {
+                path: 'history',
+                element: <PaymentHistory></PaymentHistory>
+            },
+            {
+                path: 'singlepayment',
+                element: <SinglePayment></SinglePayment>
             },
             {
                 path: 'userhome',

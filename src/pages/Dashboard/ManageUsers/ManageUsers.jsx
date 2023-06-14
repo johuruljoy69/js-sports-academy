@@ -3,22 +3,30 @@ import { Helmet } from "react-helmet";
 import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useState } from "react";
 
 
 const ManageUsers = () => {
     const [axiosSecure] = useAxiosSecure();
+
+    const [isAdminSelected, setIsAdminSelected] = useState(false);
+    const [isInstructorSelected, setIsInstructorSelected] = useState(false);
+
+
     const { data: users = [], refetch } = useQuery(['users'], async () => {
         const res = await axiosSecure.get('/users')
         return res.data;
-    })
+    });
 
     const handleMakeAdmin = user => {
-        fetch(`http://localhost:5000/users/admin/${user._id}`, {
+        fetch(`https://b7a12-summer-camp-server-side-johuruljoy69.vercel.app/users/admin/${user._id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount) {
+                    setIsAdminSelected(true);
+                    setIsInstructorSelected(false);
                     refetch();
                     Swal.fire({
                         position: 'top-end',
@@ -32,12 +40,14 @@ const ManageUsers = () => {
     };
 
     const handleMakeInstructor = user => {
-        fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+        fetch(`https://b7a12-summer-camp-server-side-johuruljoy69.vercel.app/users/instructor/${user._id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount) {
+                    setIsAdminSelected(false);
+                    setIsInstructorSelected(true);
                     refetch();
                     Swal.fire({
                         position: 'top-end',
@@ -61,7 +71,7 @@ const ManageUsers = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/users/${user._id}`, {
+                fetch(`https://b7a12-summer-camp-server-side-johuruljoy69.vercel.app/users/${user._id}`, {
                     method: 'DELETE',
                 })
                     .then(res => res.json())
@@ -123,10 +133,10 @@ const ManageUsers = () => {
                                     {user.name}
                                 </td>
                                 <td >{user.email}</td>
-                                <td >{user.role === 'admin' ? <button className="btn btn-ghost btn-xl bg-green-700 hover:bg-green-900 text-white">Admin</button> : <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost btn-xl bg-orange-600 hover:bg-orange-900 text-white">Make Admin</button>}
+                                <td >{user.role === 'admin' ? <button className="btn btn-ghost btn-xl bg-green-700 hover:bg-green-900 text-white">Admin</button> : <button onClick={() => handleMakeAdmin(user)} disabled={isInstructorSelected} className="btn btn-ghost btn-xl bg-orange-600 hover:bg-orange-900 text-white">Make Admin</button>}
                                 </td>
 
-                                <td >{user.role === 'instructor' ? <button className="btn btn-ghost btn-xl bg-blue-600 hover:bg-blue-900 text-white">Instructor</button> : <button onClick={() => handleMakeInstructor(user)} className="btn btn-ghost btn-xl bg-purple-600 hover:bg-purple-950 text-white">Make Instructor</button>}
+                                <td >{user.role === 'instructor' ? <button className="btn btn-ghost btn-xl bg-green-700 hover:bg-blue-900 text-white">Instructor</button> : <button onClick={() => handleMakeInstructor(user)} disabled={isAdminSelected} className="btn btn-ghost btn-xl bg-purple-600 hover:bg-purple-950 text-white">Make Instructor</button>}
                                 </td>
                                 <td>
                                     <button onClick={() => handleDelete(user)} className="btn btn-ghost btn-xl rounded-full bg-red-800 hover:bg-black text-white"> <FaTrashAlt /> </button>

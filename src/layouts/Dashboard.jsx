@@ -9,9 +9,6 @@ import useInstructor from "../hooks/useInstructor";
 const Dashboard = () => {
     const [cart] = useCart();
 
-    // TODO: load data from the server to have dynamic is Admin based on data
-    // const isAdmin = true;
-
     const [isAdmin] = useAdmin();
     const [isInstructor] = useInstructor();
 
@@ -47,10 +44,10 @@ const Dashboard = () => {
                                 </>
                             ) : (
                                 <>
-                                    <li> <NavLink to="/dashboard/studenthome" ><FaHome /> Student Home </NavLink> </li>
+                                    <li> <NavLink to="/dashboard/userhome" ><FaHome /> Student Home </NavLink> </li>
                                     <li> <NavLink to="/dashboard/classes" ><FaWallet /> My Enrolled Classes </NavLink> </li>
-                                    <li> <NavLink to="/dashboard/classes" ><FaWallet /> My Selected Classes </NavLink> </li>
-                                    <li> <NavLink to="/dashboard/mydashboard" ><FaShoppingCart /> My Cart <span className="badge badge-secondary"> +{cart?.length || 0} </span> </NavLink> </li>
+                                    <li> <NavLink to="/dashboard/history" ><FaWallet /> Payment History </NavLink> </li>
+                                    <li> <NavLink to="/dashboard/mydashboard" ><FaShoppingCart /> My Selected Classes <span className="badge badge-secondary"> +{cart?.length || 0} </span> </NavLink> </li>
                                 </>
                             )
                         )

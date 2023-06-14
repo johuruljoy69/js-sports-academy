@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useClasses from "../../../hooks/useClasses";
 import { FaTrashAlt } from "react-icons/fa";
@@ -40,6 +41,9 @@ const ManageClasses = () => {
 
     return (
         <div className=" w-[800px] mx-auto bg-slate-300 p-10">
+            <Helmet>
+                <title>JSSA | Manage Class</title>
+            </Helmet>
             <div className="text-center w-3/4 mb-10 mx-auto space-y-3">
                 {/* <p className="text-orange-500 text-xl font-semibold">Hurry Up</p> */}
                 <h1 className="md:text-5xl text-slate-600 font-bold uppercase border-y-4 border-slate-400 py-4 ">Manage All Classes</h1>

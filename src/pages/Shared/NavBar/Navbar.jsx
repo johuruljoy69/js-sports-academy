@@ -1,11 +1,12 @@
 import { useContext } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import useCart from '../../../hooks/useCart';
 import useAdmin from '../../../hooks/useAdmin';
 import useInstructor from '../../../hooks/useInstructor';
-import logo from '../../../assets/logo.svg'
+import logo from '../../../assets/logo.png'
+// import useStudent from '../../../hooks/useStudent';
 
 
 
@@ -14,6 +15,8 @@ const Navbar = () => {
     const [cart] = useCart();
     const [isAdmin] = useAdmin();
     const [isInstructor] = useInstructor();
+    // const [isStudent] = useStudent();
+    const location = useLocation();
 
 
     const handleLogout = () => {
@@ -28,27 +31,14 @@ const Navbar = () => {
         <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/instructors">Instructors</NavLink>
         <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/classes">Classes</NavLink>
         {
-            isAdmin ? <Link to="/dashboard/adminhome">Dashboard</Link>: (isInstructor ? <Link to="/dashboard/instructorhome">Dashboard</Link> : <Link to="/dashboard/userhome">Dashboard</Link>)
-        }        
-         <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/dashboard/mydashboard"><span className='flex items-center'><FaShoppingCart /><div className="badge badge-secondary ml-1">+{cart?.length || 0} </div></span></NavLink>        
-        <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/contact">Contact</NavLink>
+            isAdmin ? <Link to="/dashboard/adminhome">Dashboard</Link> : (isInstructor ? isInstructor && <Link to="/dashboard/instructorhome">Dashboard</Link> : (user ? <Link to="/dashboard/userhome">Dashboard</Link> : <Link to="/login" state={{ from: location }}>Dashboard</Link>))
+        }
 
-
-{/* 
         {
-            isAdmin || isInstructor ? <><NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/">Home</NavLink>
-                <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/instructors">Instructors</NavLink>
-                <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/classes">Classes</NavLink>
-                <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/dashboard/mydashboard">Dashboard</NavLink>
-                <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/contact">Contact</NavLink> </> :
-                <>
-                    <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/">Home</NavLink>
-                    <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/instructors">Instructors</NavLink>
-                    <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/classes">Classes</NavLink>
-                    <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/dashboard/mydashboard"><span className='flex items-center'><FaShoppingCart /><div className="badge badge-secondary ml-1">+{cart?.length || 0} </div></span></NavLink>
-                    <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/contact">Contact</NavLink>
-                </>
-        } */}
+            isAdmin ? "" : (isInstructor ? "" : ( user ? <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/dashboard/mydashboard"><span className='flex items-center'><FaShoppingCart /><div className="badge badge-secondary ml-1">+{cart?.length || 0} </div></span></NavLink> : <Link to="/login" state={{ from: location }}><span className='flex items-center'><FaShoppingCart /><div className="badge badge-secondary ml-1">+{cart?.length || 0} </div></span></Link>))
+        }
+
+        <NavLink className={({ isActive }) => (isActive ? 'text-orange-500' : '')} to="/contact">Contact</NavLink>
 
     </>
 

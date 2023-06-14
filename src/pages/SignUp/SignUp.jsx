@@ -22,7 +22,7 @@ const Login = () => {
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
                         const savedUser = { name: data.name, email: data.email, photo: data.photoURL }
-                        fetch('http://localhost:5000/users', {
+                        fetch('https://b7a12-summer-camp-server-side-johuruljoy69.vercel.app/users', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json',
@@ -94,12 +94,12 @@ const Login = () => {
                                 <label className="label">
                                     <span className="label-text text-white">Confirm Password</span>
                                 </label>
-                                <input type="password"  {...register("password", {
+                                <input type="password"  {...register("confirm", {
                                     required: true,
                                     minLength: 8,
                                     maxLength: 25,
                                 })} placeholder="Confirm Password" className="input input-bordered bg-gray-800 border border-white" />
-                                {errors.password?.type === 'required' && <p className="text-orange-500">Password is required</p>}
+                                {errors.confirm?.type === 'required' && <p className="text-orange-500">Password is required</p>}
                             </div>
                             <div className="form-control">
                                 <label className="label">

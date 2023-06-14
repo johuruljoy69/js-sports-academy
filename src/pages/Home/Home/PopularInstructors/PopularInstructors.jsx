@@ -1,10 +1,13 @@
 import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
+import useUsers from "../../../../hooks/useUers";
 import PopularInstructorCard from "./PopularInstructorCard";
-import useInstructors from "../../../../hooks/useInstructors";
+
+import { Link } from "react-router-dom";
 
 
 const PopularInstructors = () => {
-    const [popularInstructors] =useInstructors();
+    const [instructors] = useUsers();
+    const popularInstructors = instructors.filter(item => item.role === 'instructor')
 
     return (
         <div className="">
@@ -25,7 +28,7 @@ const PopularInstructors = () => {
                     }
                 </div>
                 <div className="text-center pb-10">
-                    <button className="mt-10 btn bg-orange-500 hover:bg-orange-800 border-b-4 text-white">View More Instructor</button>
+                    <Link to="/instructors"><button className="mt-10 btn bg-orange-500 hover:bg-orange-800 border-b-4 text-white">View More Instructor</button></Link>
                 </div>
             </div>
         </div>

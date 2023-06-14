@@ -1,11 +1,12 @@
 import InstructorsCard from "./InstructorsCard";
 import { Helmet } from "react-helmet";
-import useInstructors from "../../hooks/useInstructors";
+import useUsers from "../../hooks/useUers";
+
 
 
 const Instructors = () => {
-    const [instructors] = useInstructors();
-
+const [instructors] = useUsers();
+const allInstructor = instructors.filter(item => item.role === 'instructor')
 
     return (
         <div>
@@ -26,7 +27,7 @@ const Instructors = () => {
             <div className="container mx-auto mt-24">
                 <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-10">
                 {
-                    instructors.map(instructor => <InstructorsCard
+                    allInstructor.map(instructor => <InstructorsCard
                     key={instructor._id}
                     instructor={instructor}
                     ></InstructorsCard>)
