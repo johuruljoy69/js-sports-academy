@@ -79,7 +79,7 @@ const MyDashboard = () => {
                                     </div>
                                 </td>
                                 <td>
-                                    {item.className}
+                                    {item.class_name}
                                 </td>
                                 <td >${item.price}</td>
                                 <td><Link to="/dashboard/singlepayment"><button className="btn btn-sm border-0 text-white bg-orange-500 hover:bg-green-700">Pay</button> </Link></td>

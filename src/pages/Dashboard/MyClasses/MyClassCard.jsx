@@ -1,7 +1,7 @@
 
 
 const MyClassCard = ({myClass}) => {
-    const { _id, image, class_name, instructor, available_seats, enrolled_seats, price } = myClass;
+    const { image, class_name, instructor, available_seats, enrolled_seats, price } = myClass;
     return (
         <div className="card w-100 text-white border border-purple-900 shadow-xl">
             <figure className="">
