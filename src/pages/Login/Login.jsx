@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import Swal from 'sweetalert2';
+import { useEffect, useRef } from 'react';
+import anime from 'animejs';
 
 
 const Login = () => {
@@ -10,6 +12,18 @@ const Login = () => {
     const { signIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
+
+    const imageRef = useRef(null);
+
+    useEffect(() => {
+        anime({
+            targets: imageRef.current,
+            translateX: 250,
+            opacity: 1,
+            duration: 1000,
+            easing: 'easeInOutQuad',
+        });
+    }, []);
 
 
     const from = location.state?.from?.pathname || "/";
@@ -40,7 +54,7 @@ const Login = () => {
             <div className="hero min-h-screen text-white">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center lg:text-left">
-                        <img src="https://cdn.pixabay.com/photo/2021/08/25/12/45/phishing-6573326_1280.png" alt="" />
+                        <img ref={imageRef} src="https://cdn.pixabay.com/photo/2021/08/25/12/45/phishing-6573326_1280.png" alt="" />
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-2xl shadow-2xl">
                         <img src="https://www.pngmart.com/files/3/Member-Login-Button-PNG-Clipart.png" alt="" />

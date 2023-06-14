@@ -89,19 +89,18 @@ const SingleCheckoutForm = ({ cart, price }) => {
                 classNames: cart.find(item => item.className)
             }
             axiosSecure.post(`/payments/${event._id}`, payment)
-            console.log(event.id);
-                // .then(data => {
-                //     console.log(data.data);
-                //     if (data.data.result.deletedCount > 0) {
-                //         Swal.fire({
-                //             position: 'top-end',
-                //             icon: 'success',
-                //             title: 'Payment Complete Successfully',
-                //             showConfirmButton: false,
-                //             timer: 1000
-                //         })
-                //     }
-                // })
+                .then(data => {
+                    console.log(data.data);
+                    if (data.data.result.deletedCount > 0) {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Payment Complete Successfully',
+                            showConfirmButton: false,
+                            timer: 1000
+                        })
+                    }
+                })
         }
 
 

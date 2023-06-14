@@ -12,12 +12,12 @@ const Home = () => {
             <Helmet>
                 <title> JSSA | Home </title>
             </Helmet>
-            <Banner />            
+            <Banner />
+            <Slider />
             <PopularInstructors />
             <About />
             <PopularClasses />
             {/* TODO: Parallax use for customer reviews (M-74-8) */}
-            <Slider />
             <SubscribeOffer />
         </div>
     );

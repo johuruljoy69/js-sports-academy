@@ -7,6 +7,7 @@ import useUsers from "../../hooks/useUers";
 const Instructors = () => {
 const [instructors] = useUsers();
 const allInstructor = instructors.filter(item => item.role === 'instructor')
+console.log(allInstructor);
 
     return (
         <div>
