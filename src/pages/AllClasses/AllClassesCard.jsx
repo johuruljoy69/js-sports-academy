@@ -18,15 +18,15 @@ const AllClassesCard = ({ allClass }) => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    
-  useEffect(() => {
-    if (available_seats === enrolled_seats) {
-      setBackgroundColor('red');
-      setIsDisabled(true)
-    } else {
-      setBackgroundColor('indigo');
-    }
-  }, [available_seats, enrolled_seats]);
+
+    useEffect(() => {
+        if (available_seats === enrolled_seats) {
+            setBackgroundColor('red');
+            setIsDisabled(true)
+        } else {
+            setBackgroundColor('indigo');
+        }
+    }, [available_seats, enrolled_seats]);
 
     const handleAddToCart = classItem => {
         setIsDisabled(true);
@@ -73,8 +73,7 @@ const AllClassesCard = ({ allClass }) => {
 
 
     return (
-        // <div className="card w-100 text-white  bg-indigo-950 border border-purple-900 shadow-xl">
-        <div className="card w-100 text-white border border-purple-900 shadow-xl" style={{backgroundColor}}>
+        <div className="card w-100 text-white border border-purple-900 shadow-xl" style={{ backgroundColor }}>
             <figure className="">
                 <img src={image} alt="Class" className="rounded-xl" />
             </figure>
@@ -86,7 +85,7 @@ const AllClassesCard = ({ allClass }) => {
                 <p>Price: ${price} </p>
                 <div className="card-actions">
                     {
-                       isAdmin || isInstructor ? "" : <button onClick={() => handleAddToCart(allClass)} disabled={isDisabled} className="btn bg-orange-500 hover:bg-orange-800 border-b-4 text-white">Add To Booking</button>
+                        isAdmin || isInstructor ? "" : <button onClick={() => handleAddToCart(allClass)} disabled={isDisabled} className="btn bg-orange-500 hover:bg-orange-800 border-b-4 text-white">Add To Booking</button>
                     }
                 </div>
             </div>

@@ -25,6 +25,7 @@ import SinglePayment from "../pages/Dashboard/Payment/SinglePayment";
 import ContactForm from "../pages/Contact/Contact";
 import PaymentHistory from "../pages/Dashboard/Payment/PaymentHistory";
 import EnrolledClass from "../pages/Dashboard/EnrolledClass/EnrolledClass";
+import MyClasses from "../pages/Dashboard/MyClasses/MyClasses";
 
 
 
@@ -116,6 +117,10 @@ const router = createBrowserRouter([
             {
                 path: 'addclass',
                 element: <InstructorRoute><AddAClass></AddAClass></InstructorRoute>
+            },
+            {
+                path: 'myclasses',
+                element: <MyClasses></MyClasses>
             }
         ]
     }
